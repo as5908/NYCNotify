@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Provider:</b>
+  <%= @authorization.provider %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @authorization.uid %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= @authorization.token %>
+</p>
+
+<p>
+  <b>Secret:</b>
+  <%= @authorization.secret %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @authorization.image_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_authorization_path(@authorization) %> |
+<%= link_to 'Back', authorizations_path %>

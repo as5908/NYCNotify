@@ -1,0 +1,3 @@
+<h2><%= @msg %></h2>
+Please click to deregister :
+<%= button_to 'De-Register',  { :controller => "users",  :id => @user.id,  :action => "destroy"}, confirm: 'Are you sure??' %>

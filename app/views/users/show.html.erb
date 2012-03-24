@@ -1,0 +1,59 @@
+
+<p>
+	<b><%= image_tag( "#{Twitter.user['profile_image_url']}" ) %></b>
+	<%= @user.name %>
+</p>
+<p>
+	<b>@</b>
+	<%= @user.nickname %>
+</p>
+<table >
+	<tr>
+		<th><%= Twitter.user['statuses_count']%></th>
+		<th><%= Twitter.user['friends_count']%></th>
+		<th><%= Twitter.user['followers_count']%></th>
+	</tr>
+	<tr>
+		<td><font size="2" color="darkblue">Tweets&nbsp;&nbsp;</font></td>
+		<td><font size="2" color="darkblue">Following&nbsp;&nbsp;</font></td>
+		<td><font size="2" color="darkblue">Followers&nbsp;&nbsp;</font></td>
+	</tr>
+</table>
+<br/>
+<%= form_tag do %>
+<table>
+	<tr>
+		<td> <%= text_area_tag(:tweet,"", :size => "50x3", :maxlength=>"140") %></td><td> (max 140 characters)
+		<%= hidden_field_tag(:id, @user.id) %> </td>
+	</tr>
+	<tr>
+		<td align="right" > <%= submit_tag( "Tweet") %> </td>
+	</tr>
+</table>
+<h3>Your home timeline : </h3>
+<% Twitter.home_timeline %> 
+<table>
+	<% Twitter.home_timeline.each do |tweet| %>
+	<tr>
+		<!--<td>****************<%= tweet.inspect %>*******************</td>-->
+		<% if tweet["retweeted_status"].nil?%>
+		<td><font color="red"><b><%= tweet["user"]['name'] %></b></font></td>
+		
+		<td><%= image_tag( "#{tweet["user"]["profile_image_url"]}" ) %></td>
+		<td> <%= tweet.text %>
+		<% else %>
+		<td><font color="red"><b><%= tweet["retweeted_status"]["user"]['name'] %></b></font></td>
+		<td><%= image_tag( "#{tweet["retweeted_status"]["user"]["profile_image_url"]}" ) %></td>
+		<td> <%= tweet.retweeted_status.text %>
+		<% end %>
+		
+		<% if tweet["user"]["screen_name"] == @user.nickname %>
+		<%= link_to "delete", "/users/delete/#{tweet.id}/#{@user.id}" %>
+		<%= link_to "retweet All", "/users/retweetAll/#{tweet.id}/#{@user.id}" %>
+		<% elsif !tweet["retweeted"]%>
+		<%= link_to "retweet", "/users/retweet/#{tweet.id}/#{@user.id}" %>
+		<% end %> </td>
+	</tr>
+	<% end %>
+</table>
+<% end %> 

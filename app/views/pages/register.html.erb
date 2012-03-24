@@ -1,0 +1,14 @@
+<table border="0" width="100%">
+	<tr>
+		<td align="center" colspan="2">
+			<textarea rows="20" cols="60" readonly="true" >
+				<%= render '/layouts/terms' %>
+			</textarea>
+		</td>
+		<!--<td align="center"><%= link_to "REGISTER", "/auth/twitter" %></td>-->
+	</tr>
+	<tr>
+		<td align="center" ><form action="/auth/twitter"><input type="submit" value="I Agree"/></form></td>
+		<td align="center"><form action="/"><input type="submit" value="Disagree"/></form></td>
+	</tr>
+</table>

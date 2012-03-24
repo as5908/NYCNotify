@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= @title %></title>
+		<%= csrf_meta_tag %> <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<%= stylesheet_link_tag 'stylesheets/blueprint/screen', :media => 'screen' %>
+		<%= stylesheet_link_tag 'stylesheets/blueprint/print',  :media => 'print' %> <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+		<%= stylesheet_link_tag 'custom', :media => 'screen' %>
+		<%= javascript_include_tag "application" %>
+	</head>
+	<body>
+		<center>
+			<div class="container">
+				<table border="0" width="100%" height="500" >
+					<tr>
+						<td background="/images/head.png" height="30" width="100%" colspan="2"> </td>
+					</tr>
+					<tr>
+						<td background="/images/logo.gif" height="80" width="100%" colspan="2"> <%= render 'layouts/header' %> </td>
+					</tr>
+					<tr>
+						<td align="center"> <%= yield %> </td>
+					</tr>
+					<tr>
+						<td> <%= render 'layouts/footer' %> </td>
+					</tr>
+					<tr >
+						<td>
+							<table bgcolor="#262323" width="100%">
+								<tr><td>
+									<font color="#fff">&#169opyright 2012 The City of New York</font>
+								</td></tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<%= debug(params) if Rails.env.development? %>
+		</center>
+	</body>
+</html>
