@@ -7,6 +7,8 @@ gem 'rails', '~> 3.2.0.rc2'
 
 #gem 'sqlite3'
 gem 'pg'
+gem 'thin'
+gem 'yajl-ruby'
 # gemfile
 ##group :production do
 #  gem 'therubyracer', '~> 0.9.3.beta1' # you will need this too

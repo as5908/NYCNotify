@@ -53,7 +53,7 @@ TweetStream.configure do |config|
   #config.parser   = :yajl
 end
 
-client = TweetStream::Client.new
+client = TweetStream::Daemon.new
 
 client.on_error do |message|
   puts message
