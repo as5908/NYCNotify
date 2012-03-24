@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  database: db/development
+  database: dbdevelopment
   username: postgres # replace this with your own user name
   password: root # replace this with your own password
   host: localhost
