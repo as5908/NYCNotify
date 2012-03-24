@@ -6,8 +6,8 @@
 development:
   adapter: postgresql
   database: dbdevelopment
-  username: postgres # replace this with your own user name
-  password: root # replace this with your own password
+  username: abhinav # replace this with your own user name
+  password: # replace this with your own password
   host: localhost
   encoding: UTF8
   pool: 5
