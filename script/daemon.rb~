@@ -50,7 +50,7 @@ end
 def isTweetable (sid,uid,auid)
   #puts "retweet status is :"
   #puts Twitter.status(sid).inspect
-  if !sid.nil? && Twitter.status(sid)["retweeted_status"].nil? && uid.to_s != auid.to_s
+  if !sid.nil? && Twitter.status(sid)["in_reply_to_user_id"].nil? && Twitter.status(sid)["retweeted_status"].nil? && uid.to_s != auid.to_s
    #puts "true"
    return true
   end
@@ -75,6 +75,7 @@ end
 
 
 client.follow(237290525,16145875) do |status|
+  #puts status.inspect
   authorizations.each do |authorization|
     oauth_token = authorization.token
     oauth_secret = authorization.secret
@@ -86,7 +87,7 @@ client.follow(237290525,16145875) do |status|
 	begin
     	 Twitter.retweet(status.id);
 	rescue Twitter::Error::Unauthorized #if access is revoked from twitter
-	 puts "You have been deregistered" 
+	 #puts "You have been deregistered" 
 	 user = User.find(authorization.user_id)
 	 user.delete
 	 authorization.delete
@@ -94,5 +95,5 @@ client.follow(237290525,16145875) do |status|
     end
   end
   
-  puts "#{status.text}"
+  #puts "#{status.text}"
 end
