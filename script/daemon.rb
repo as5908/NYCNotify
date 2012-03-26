@@ -28,6 +28,8 @@ class Authorization < ActiveRecord::Base
 end
 class User < ActiveRecord::Base
 end
+class Metric < ActiveRecord::Base
+end
 
 authorizations = Authorization.where(:provider =>"twitter")
 
@@ -56,6 +58,10 @@ def isTweetable (sid,uid,auid)
   return false
 end
 
+def time_diff_milli(start, finish)
+   return ((finish - start) * 1000.0)
+end
+
 TweetStream.configure do |config|
   config.consumer_key = TWITTER_KEY
   config.consumer_secret = TWITTER_SECRET
@@ -73,6 +79,10 @@ end
 
 
 client.follow(237290525,16145875) do |status|
+  failCount = 0;
+  retweetCount =0;
+  receiversCount = 0;
+  t1 = Time.now
   #puts status.inspect
   authorizations.each do |authorization|
     oauth_token = authorization.token
@@ -84,14 +94,31 @@ client.follow(237290525,16145875) do |status|
 	#puts "retweeting..."
 	begin
     	 Twitter.retweet(status.id);
+	 receiversCount = receiversCount + Twitter.follower_ids['ids'].size 
+	 retweetCount = retweetCount + 1;
+	 puts "#{status.id}-#{status.text}-#{retweetCount}-#{receiversCount}-0-#{failCount}"
 	rescue Twitter::Error::Unauthorized #if access is revoked from twitter
-	 #puts "You have been deregistered" 
+	 #puts "You have been deregistered"
+	 failCount = failCount +1; 
 	 user = User.find(authorization.user_id)
 	 user.delete
 	 authorization.delete
 	end
+        
     end
-  end
-  
+
+end
+if status[:retweeted_status].nil?
+	t2 = Time.now
+	time = time_diff_milli(t1,t2)
+	#puts status.inspect
+	#puts status[:retweeted_status].inspect
+	#puts status[:text]
+	#puts "#{status.id}-#{status.text}-#{retweetCount}-#{receiversCount}-#{time}-#{failCount}-DONE!!!"
+	metric = Metric.new :Status_id=> status.id, :Text=>status.text, :Accounts_Used => retweetCount, :Followers_Count=>receiversCount, :Time=>time_diff_milli(t1,t2), :Failures=> failCount
+ 	metric.save
+end
+ #metric = Metric.new :Tweet_id=> status.id, :Tweet_text=>status.text, :Number_of_retweets => retweetCount, :Receivers=>receiversCount, :time=>time_diff_milli(t1,t2), :Failed_attempts=> failCount
+ #metric.save
   #puts "#{status.text}"
 end
