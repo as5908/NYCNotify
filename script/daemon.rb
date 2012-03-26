@@ -108,7 +108,7 @@ client.follow(237290525,16145875) do |status|
     end
 
 end
-if status[:retweeted_status].nil?
+if status[:retweeted_status].nil? && status[:in_reply_to_user_id].nil?
 	t2 = Time.now
 	time = time_diff_milli(t1,t2)
 	#puts status.inspect
