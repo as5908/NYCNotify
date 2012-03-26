@@ -82,6 +82,7 @@ client.follow(237290525,16145875) do |status|
   failCount = 0;
   retweetCount =0;
   receiversCount = 0;
+  allFollowers = [];
   t1 = Time.now
   #puts status.inspect
   authorizations.each do |authorization|
@@ -94,7 +95,8 @@ client.follow(237290525,16145875) do |status|
 	#puts "retweeting..."
 	begin
     	 Twitter.retweet(status.id);
-	 receiversCount = receiversCount + Twitter.follower_ids['ids'].size 
+	 #receiversCount = receiversCount + Twitter.follower_ids.size
+	 allFollowers = allFollowers | Twitter.follower_ids['ids'] #taking union af all followers
 	 retweetCount = retweetCount + 1;
 	 puts "#{status.id}-#{status.text}-#{retweetCount}-#{receiversCount}-0-#{failCount}"
 	rescue Twitter::Error::Unauthorized #if access is revoked from twitter
@@ -111,6 +113,8 @@ end
 if status[:retweeted_status].nil? && status[:in_reply_to_user_id].nil?
 	t2 = Time.now
 	time = time_diff_milli(t1,t2)
+	receiversCount = allFollowers.size
+	puts allFollowers
 	#puts status.inspect
 	#puts status[:retweeted_status].inspect
 	#puts status[:text]
