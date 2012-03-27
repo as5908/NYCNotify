@@ -79,10 +79,11 @@ end
 
 
 client.follow(237290525,16145875) do |status|
-  failCount = 0;
-  retweetCount =0;
-  receiversCount = 0;
-  allFollowers = [];
+  failCount = 0
+  retweetCount =0
+  receiversCount = 0
+  allFollowers = []
+  accounts = []
   t1 = Time.now
   #puts status.inspect
   authorizations.each do |authorization|
@@ -95,6 +96,7 @@ client.follow(237290525,16145875) do |status|
 	#puts "retweeting..."
 	begin
     	 Twitter.retweet(status.id);
+	 accounts = accounts.push(auid)
 	 #receiversCount = receiversCount + Twitter.follower_ids.size
 	 allFollowers = allFollowers | Twitter.follower_ids['ids'] #taking union af all followers
 	 retweetCount = retweetCount + 1;
@@ -113,8 +115,9 @@ end
 if status[:retweeted_status].nil? && status[:in_reply_to_user_id].nil?
 	t2 = Time.now
 	time = time_diff_milli(t1,t2)
-	receiversCount = allFollowers.size
-	#puts allFollowers
+	amplified = allFollowers | accounts
+	receiversCount = amplified.size
+	#puts amplified
 	#puts status.inspect
 	#puts status[:retweeted_status].inspect
 	#puts status[:text]
