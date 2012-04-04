@@ -5,6 +5,7 @@ NewApp::Application.routes.draw do
   get '/thanks', :to=> 'pages#deregister'
   match '/auth/:provider/callback', :to => 'authorizations#callback'
   match '/auth/failure', :to => 'authorizations#failure'
+  match '/failure', :to => 'authorizations#error'
   match '/welcome', :to => 'authorizations#show'
   #root :to => 'login#login'
   root :to => "pages#home"
