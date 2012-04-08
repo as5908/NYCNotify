@@ -3,8 +3,6 @@
 	<head>
 		<title><%= @title %></title>
 		<%= csrf_meta_tag %> 
-		<%= stylesheet_link_tag 'stylesheets/blueprint/screen', :media => 'screen' %>
-		<%= stylesheet_link_tag 'stylesheets/blueprint/print',  :media => 'print' %>
 		<%= stylesheet_link_tag 'custom', :media => 'screen' %>
 		<%= javascript_include_tag "application" %>
 	</head>
@@ -13,10 +11,10 @@
 			<div class="container">
 				<table border="0" width="100%" height="500" >
 					<tr>
-						<td background="/images/head.png" height="30" width="100%" colspan="2"> </td>
+						<td background="/images/head.png" height="30" width="70" colspan="2"> </td>
 					</tr>
 					<tr>
-						<td background="/images/logo.gif" height="80" width="100%" colspan="2"> <%= render 'layouts/header' %> </td>
+						<td background="/images/logo.gif" height="80" width="70" colspan="2"> <%= render 'layouts/header' %> </td>
 					</tr>
 					<tr>
 						<td align="center"> <%= yield %> </td>
