@@ -1,0 +1,29 @@
+<h1 align="center">Listing metrics</h1>
+<h3 align="center"><%= link_to "Export to CSV", :controller => "metrics", :action => "index", :format => :csv %></h3><br/>
+<table border="1" width="100%" class="altrowstable" id="alternatecolor">
+  <tr>
+    <th><u>Serial No.</u></th>
+    <th width="40%"><u>Text</u></th>
+    <th><u>Accounts used</u></th>
+    <th><u>Followers count</u></th>
+    <th><u>Time</u></th>
+    <th><u>Failures</u></th>
+    <th><u>Creation Time</u></th>
+  </tr>
+<% count=0%>
+<% @metrics.each do |metric| %>
+  <tr>
+    <td><%= count;count=count+1 %></td>
+    <td><%= metric.Text %></td>
+    <td><%= metric.Accounts_Used %></td>
+    <td><%= metric.Followers_Count %></td>
+    <td><%= metric.Time.to_i/1000 %>s</td>
+    <td><%= metric.Failures %></td>
+    <td><%= metric.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %B %Y') %><br/>
+    <%= metric.created_at.localtime.strftime('%l:%M:%S %P') %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

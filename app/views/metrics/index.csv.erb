@@ -1,0 +1,6 @@
+<% headers = ["Status Id", "Text", "Accounts used","Followers Count","Time Taken(in milliseconds)","Failures","Creation Time"] %>
+<%= CSV.generate_line(headers, {:row_sep => nil}).html_safe %>
+<% @metrics.each do |m| %>
+<% row = [ '#'+m.Status_id,m.Text,m.Accounts_Used,m.Followers_Count,m.Time.to_f,m.Failures,m.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d-%B-%Y %l:%M:%S %P') ] %>
+<%= CSV.generate_line(row, {:row_sep => nil}).html_safe %>
+<% end %>
