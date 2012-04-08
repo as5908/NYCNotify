@@ -85,7 +85,7 @@ client.follow(237290525,16145875) do |status|
   t1 = Time.now
   #puts status.inspect
   begin
-  if WORDS_FILTER.any? { |w| status.text =~ /#{w}/ }
+  if WORDS_FILTER.any? { |w| status.text.downcase =~ /#{w}/ }
    puts "true"
    authorizations.each do |authorization|
     oauth_token = authorization.token
