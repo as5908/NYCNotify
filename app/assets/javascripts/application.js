@@ -13,9 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-Event.addBehavior.reassignAfterAjax = true;
-Event.addBehavior({
-    'div.pagination a' : Remote.Link
-})
+
 
 
