@@ -1,9 +1,9 @@
 class MetricsController < ApplicationController
-
+  http_basic_authenticate_with :name => USERNAME, :password => PASSWORD
   # GET /metrics
   # GET /metrics.json
   def show
-    @title= "Dashboard"
+    @title= "Metrics"
     @metrics = Metric.find(:all, :order => "created_at DESC")
     respond_to do |format|
       format.html # index.html.erb

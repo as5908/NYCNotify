@@ -11,6 +11,6 @@ NewApp::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   match '/register', :to => 'pages#register'
-  match '/dashboard', :to => "metrics#show"
-  match '/json', :to => "metrics#json"
+  match '/metrics', :to => "metrics#show"
+  match '/metrics/json', :to => "metrics#json"
 end
