@@ -13,7 +13,11 @@ class MetricsController < ApplicationController
     @metrics = Metric.find(:all, :order => "created_at DESC").paginate(:page=>params[:page], :per_page=>perPage)
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @metrics }
+      format.js do
+        render :update do |page|
+          page.replace_html 'metrics', :partial => "metrics"
+        end
+      end
     end
   end
 		
