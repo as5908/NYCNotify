@@ -4,12 +4,13 @@ class MetricsController < ApplicationController
   # GET /metrics.json
   def show
     @title= "Metrics"
+    perPage = 20;
     if params[:page].present?
-     @count = (params[:page].to_i-1) * 20
+     @count = (params[:page].to_i-1) * perPage
     else
      @count= 0
     end
-    @metrics = Metric.find(:all, :order => "created_at DESC").paginate(:page=>params[:page], :per_page=>20)
+    @metrics = Metric.find(:all, :order => "created_at DESC").paginate(:page=>params[:page], :per_page=>perPage)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @metrics }
