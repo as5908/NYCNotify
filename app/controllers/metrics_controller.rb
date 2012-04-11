@@ -11,15 +11,12 @@ class MetricsController < ApplicationController
     else
      @count= 0
     end
-    @metrics = Metric.search(params[:search]).order('"'+sort_column + '"'+" " + sort_direction).paginate(:page=>params[:page], :per_page=>perPage)
+    @metrics = Metric.search(params[:search].to_s.downcase).order('"'+ sort_column + '"'+" " + sort_direction).paginate(:page=>params[:page], :per_page=>perPage)
   end
 		
   def json
    @title= "JSON formatted data"
    @metrics = Metric.find(:all, :order => "created_at DESC")
-   #render :text => @users.inspect
-   #@json = JSON.generate(@users)
-   #render :text => "hi"
    render :json=> @metrics.to_json
   end
 
