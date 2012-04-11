@@ -1,0 +1,34 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<div class="digg_pagination">
+    <div>
+      <%= page_entries_info @metrics %>
+    </div>
+<%= will_paginate @metrics %>
+</div>
+<table border="1" width="100%" class="imagetable pretty" id="alternatecolor">
+  <tr>
+    <th>#</th>
+    <th width="40%"><%= sortable "Text" %></th>
+    <th><%= sortable "Accounts_Used" %> </th>
+    <th><%= sortable "Followers_Count" %> </th>
+    <th><%= sortable "Time" %> </th>
+    <th><%= sortable "Failures" %> </th>
+    <th><%= sortable "created_at" %></th>
+  </tr>
+<% count= @count.to_i %>
+<% @metrics.each do |metric| %>
+  <tr>
+    <td><%= count;count=count+1 %></td>
+    <td><%= metric.Text %></td>
+    <td><%= metric.Accounts_Used %></td>
+    <td><%= metric.Followers_Count %></td>
+    <td><%= metric.Time.to_i/1000 %>s</td>
+    <td><%= metric.Failures %></td>
+    <td><%= metric.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %B %Y') %><br/>
+    <%= metric.created_at.localtime.strftime('%l:%M:%S %P') %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @metrics %>
+

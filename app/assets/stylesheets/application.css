@@ -12,6 +12,7 @@
  *= require_tree .
 */
 
+
 table.altrowstable {
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;
@@ -144,3 +145,19 @@ table.altrowstable td {
     margin-right: 1em; }
   .flickr_pagination .next_page {
     margin-left: 1em; }
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+  padding: 1.5em;
+  background-image: url(/images/up_arrow.gif);
+}
+
+.pretty th .desc {
+  padding: 1.5em;
+  background-image: url(/images/down_arrow.gif);
+}

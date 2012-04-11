@@ -3,10 +3,10 @@
 	<head>
 		<title><%= @title %></title>
 		<%= csrf_meta_tag %> 
-		<%= stylesheet_link_tag 'application'%>
+		<%= stylesheet_link_tag 'application', 'table'%>
 		<%= stylesheet_link_tag 'custom', :media => 'screen' %>
-		<%= javascript_include_tag 'application' %>
-  		<%= javascript_include_tag 'table' %>
+		<%= javascript_include_tag 'application', 'table'%>
+ 		<%= javascript_include_tag :defaults %>
 	</head>
 	<body>
 		<center>
