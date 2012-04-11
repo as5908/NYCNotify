@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.0.rc2'
 gem 'will_paginate'
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
