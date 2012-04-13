@@ -1,7 +1,7 @@
 NewApp::Application.routes.draw do
   resources :metrics
   post '/users/:id', :to => 'users#destroy'
-  get '/thanks', :to=> 'pages#deregister'
+  get '/thanks', :to=> 'pages#goodbye'
   match '/auth/:provider/callback', :to => 'authorizations#callback'
   match '/auth/failure', :to => 'authorizations#failure'
   match '/failure', :to => 'authorizations#error'
@@ -13,4 +13,5 @@ NewApp::Application.routes.draw do
   match '/register', :to => 'pages#register'
   match '/metric', :to => "metrics#show"
   match '/metric/json', :to => "metrics#json"
+  match '/deregister', :to => "pages#deregister"
 end
