@@ -21,10 +21,10 @@
   <tr>
     <td><%= count;count=count+1 %></td>
     <td><%= metric.Text %></td>
-    <td><%= metric.Accounts_Used %></td>
-    <td><%= metric.Followers_Count %></td>
+    <td><%= metric.Accounts_Used.to_i %></td>
+    <td><%= metric.Followers_Count.to_i %></td>
     <td><%= metric.Time.to_i/1000 %>s</td>
-    <td><%= metric.Failures %></td>
+    <td><%= metric.Failures.to_i %></td>
     <td><%= metric.created_at.in_time_zone("Eastern Time (US & Canada)").strftime('%d %B %Y') %><br/>
     <%= metric.created_at.localtime.strftime('%l:%M:%S %P') %></td>
   </tr>
