@@ -76,7 +76,7 @@ client.on_error do |message|
   puts message
 end
 
-client.follow(237290525,16145875) do |status|
+client.follow(16145875) do |status|
   failCount = 0
   retweetCount =0
   receiversCount = 0

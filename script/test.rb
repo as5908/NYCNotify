@@ -35,13 +35,14 @@ authorizations = Authorization.where(:provider =>"twitter")
 
 TWITTER_KEY = '0b59udjJPemBKkCtPgrlg'
 TWITTER_SECRET = 'N2TroqsYV9o9o0UjRXPie2gYCv2sgrxfZonlbHHKamI'
+WORDS_FILTER = ['delay','alert']
+USER_TOKEN = "237290525-7xnf8Vxh0DeS4JX3qAp06cQV7ny4xca3gpaaU7Bu"
+USER_SECRET = "VgJUPP3sNHmmQvYd2qIpESB0cbCESELT9aWetbSvGQ"
 
 def authenticate(oauth_token,oauth_secret)
  Twitter.configure do |config|
    config.consumer_key = TWITTER_KEY
    config.consumer_secret = TWITTER_SECRET
-   #config.oauth_token = "517995479-IKRTBBsTu3RTa0KkZR1qRInyoUlE8vEdERDeTWyK"
-   #config.oauth_token_secret = "rK59NTqH9TUjCNXL03QDqzpvjTU5r5OSog5ms9syjk"
    config.oauth_token = oauth_token
    config.oauth_token_secret = oauth_secret
  end
@@ -50,11 +51,9 @@ end
 def isTweetable (sid,uid,auid)
   #puts "retweet status is :"
   #puts Twitter.status(sid).inspect
-  if !sid.nil? && Twitter.status(sid)["in_reply_to_user_id"].nil? && Twitter.status(sid)["retweeted_status"].nil? && uid.to_s != auid.to_s
-   #puts "true"
+  if !sid.nil? && Twitter.status(sid)["in_reply_to_user_id"].nil? && Twitter.status(sid)["retweeted_status"].nil? 
    return true
   end
-   #puts "false"
   return false
 end
 
@@ -65,8 +64,8 @@ end
 TweetStream.configure do |config|
   config.consumer_key = TWITTER_KEY
   config.consumer_secret = TWITTER_SECRET
-  config.oauth_token = "237290525-7xnf8Vxh0DeS4JX3qAp06cQV7ny4xca3gpaaU7Bu"
-  config.oauth_token_secret = "VgJUPP3sNHmmQvYd2qIpESB0cbCESELT9aWetbSvGQ"
+  config.oauth_token = USER_TOKEN
+  config.oauth_token_secret = USER_SECRET
   #config.auth_method = :oauth
   #config.parser   = :yajl
 end
@@ -77,6 +76,59 @@ client.on_error do |message|
   puts message
 end
 
-client.filter({:follow => ['109068765'],:track => ['test'] } ) do |status|
-  puts "#{status.text}"
+client.follow('abhinavsahai1') do |status|
+  if isTweetable(status.id,status.user.id,auid)
+   failCount = 0
+   retweetCount =0
+   receiversCount = 0
+   allFollowers = []
+   accounts = []
+   t1 = Time.now
+   #puts status.inspect
+   begin
+   if WORDS_FILTER.any? { |w| status.text.downcase =~ /#{w}/ }
+    authorizations.each do |authorization|
+     oauth_token = authorization.token
+     oauth_secret = authorization.secret
+     auid = authorization.uid.to_i
+     authenticate(oauth_token,oauth_secret)
+     if status.user.id.to_s != auid.to_s #if authorized user is different from the one who posted the tweet
+	 begin
+    	  Twitter.retweet(status.id);
+	  accounts = accounts.push(auid)
+	  allFollowers = allFollowers | Twitter.follower_ids['ids'] #taking union af all followers
+	  retweetCount = retweetCount + 1;
+
+	 rescue Twitter::Error::Unauthorized #if access is revoked from twitter
+	  puts "Unauthorized Exception occured"
+	  failCount = failCount +1; 
+	  user = User.find(authorization.user_id)
+	  user.delete
+	  authorization.delete
+	 rescue Exception=>e #if any other kind of error
+	   failCount = failCount +1;
+	   puts "Unknown Exception occured"
+	   puts e 
+	   #catch the exception, do nothing and proceed
+	 end       #end of begin
+     end #end of if
+   end #end of do |authorization|
+  begin
+    if status[:retweeted_status].nil? && status[:in_reply_to_user_id].nil?
+	 t2 = Time.now
+	 time = time_diff_milli(t1,t2)
+	 amplified = allFollowers | accounts
+	 receiversCount = amplified.size
+	 metric = Metric.new :Status_id=> status.id, :Text=>status.text, :Accounts_Used => retweetCount, :Followers_Count=>receiversCount, :Time=>time_diff_milli(t1,t2), :Failures=> failCount
+ 	 metric.save
+    end
+    rescue Exception => e  #Exception related to database
+    puts e.message  
+    puts e.backtrace.inspect  
+  end 
+ end #end of if any? { |w| status =~ /#{w}/ } 
+ rescue Exception=>e #any kind of exception e.g if status is deleted immediately after posting
+  puts e   
+ end
+ end #end of if isTweetable
 end
