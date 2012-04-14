@@ -10,30 +10,11 @@
 	</head>
 	<body>
 			<div class="container">
-				<table border="0" width="100%" height="500" >
-					<tr>
-						<td background="/images/head.png" height="30" width="70" colspan="2"> </td>
-					</tr>
-					<tr>
-						<td background="/images/logo.gif" height="80" width="70" colspan="2">  </td>
-					</tr>
-					<tr>
-						<td align="center"> <%= yield %> </td>
-					</tr>
-					<tr>
-						<td>  </td>
-					</tr>
-					<tr >
-						<td>
-							<table bgcolor="#262323" width="100%">
-								<tr><td>
-									<font color="#fff">&#169 2012 The City of New York</font>
-								</td></tr>
-							</table>
-						</td>
-					</tr>
-				</table>
+				<%= render 'layouts/header' %>
+				<%= yield %> 
+				<%= render 'layouts/footer' %>
 			</div>
 			<%= debug(params) if Rails.env.development? %>
+
 	</body>
 </html>
