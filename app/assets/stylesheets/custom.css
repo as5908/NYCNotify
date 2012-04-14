@@ -8,7 +8,9 @@
 	background-color: #fe0000;
 }
 
-
+.hero-unit h1 {
+	font-size: 45px;
+}
 /* Navigation */
 
 .navbar .nav > li > a {
