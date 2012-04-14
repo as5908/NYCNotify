@@ -1,11 +1,13 @@
-<div class="control-group">
-			<textarea class="span12" readonly="true" >
+<form action="/auth/twitter">
+	<div class="control-group">
+			<textarea class="span12" readonly="true" rows="20" >
 				<%= render '/layouts/terms' %>
 			</textarea>
-</div>
+	</div>
 
 		<!--<td align="center"><%= link_to "REGISTER", "/auth/twitter" %></td>-->
-<div class="actions">
-		<form action="/auth/twitter"><input type="submit" value="I Agree" class="btn btn-primary "/></form> 
-		<form action="/"><input type="submit" value="I Disagree" class="btn" /></form></td>
-</div>
+	<div class="actions">
+			<input type="submit" value="I Agree" class="btn btn-primary "/> 
+			<a href="/" class="btn" />I Disagree</a>
+	</div>
+</form>

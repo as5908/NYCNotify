@@ -9,6 +9,7 @@
 }
 #notify-header .navbar-inner {
 	background-color: #fe0000;
+	background-image: none;
 }
 .hero-unit h1 {
 	font-size: 45px;
@@ -26,7 +27,11 @@
 	text-transform: uppercase;
 	text-decoration: underline;
 }
-
+@media all and (max-width: 767px) {
+	#twitter-widget {
+		display: none;
+	}
+}
 /* Sign up button */
 
 a.signup_button {
