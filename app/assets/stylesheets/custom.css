@@ -14,10 +14,8 @@
 	font-size: 45px;
 }
 /* Navigation */
-#notify-logo {
-	float:left;
-}
 #notify-header.navbar .nav {
+	float: right;
 	right: 20px;
 }
 #notify-header.navbar .nav > li > a {
