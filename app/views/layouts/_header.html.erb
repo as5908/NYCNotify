@@ -1,13 +1,20 @@
 <header>
-	<nav class="round">
-		<ul>
-			<li>
-				<%= link_to "Home", "/" %>
-			</li>
-			<li>
-				<%= link_to "Contact Us", "#" %>
-			</li>
-		</ul>
-	</nav>
+	<div id="nyc-gov-header">
+		<a href="http://nyc.gov"><img src="/images/nyc-gov-logo.gif" alt="NYC.gov, Always Open" /></a>
+	</div>
+	<div class="row" id="notify-header">
+		<div class="span6">
+			<a href="/"><img src="/images/notify-logo.gif" alt="Notify NYC" /></a>
+		</div>
+		<div class="nav" class="span6">
+			<ul>
+				<li>
+					<%= link_to "Home", "/" %>
+				</li>
+				<li>
+					<%= link_to "Contact Us", "#" %>
+				</li>
+			</ul>
+		</div>
 </header>
 <!--<%= image_tag("/images/logo.gif", :alt=>"Notify NYC", :class=>"round")%>-->
