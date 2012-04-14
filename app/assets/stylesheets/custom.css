@@ -12,7 +12,12 @@
 	font-size: 45px;
 }
 /* Navigation */
-
+#notify-logo {
+	float:left;
+}
+.navbar {
+	float: right;
+}
 .navbar .nav > li > a {
 	text-transform: uppercase;
 	color: #fff;
