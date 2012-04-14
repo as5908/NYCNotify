@@ -11,7 +11,14 @@
 
 /* Navigation */
 
-
+.navbar .nav > li > a {
+	text-transform: uppercase;
+	color: #fff;
+}
+.navbar .nav > li > a:hover {
+	text-transform: uppercase;
+	text-decoration: underline;
+}
 
 /* Sign up button */
 
