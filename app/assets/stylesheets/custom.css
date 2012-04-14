@@ -7,7 +7,9 @@
 	border-bottom: 3px solid #fff;
 	background-color: #fe0000;
 }
-
+#notify-header .navbar-inner {
+	background-color: #fe0000;
+}
 .hero-unit h1 {
 	font-size: 45px;
 }
@@ -15,14 +17,14 @@
 #notify-logo {
 	float:left;
 }
-.nav {
-	float: right;
+#notify-header.navbar .nav {
+	right: 20px;
 }
-.navbar .nav > li > a {
+#notify-header.navbar .nav > li > a {
 	text-transform: uppercase;
 	color: #fff;
 }
-.navbar .nav > li > a:hover {
+#notify-header.navbar .nav > li > a:hover {
 	text-transform: uppercase;
 	text-decoration: underline;
 }
