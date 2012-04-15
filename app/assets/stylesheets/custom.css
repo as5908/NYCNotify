@@ -22,10 +22,12 @@
 #notify-header.navbar .nav > li > a {
 	text-transform: uppercase;
 	color: #fff;
+	font-weight: normal;
 }
 #notify-header.navbar .nav > li > a:hover {
 	text-transform: uppercase;
 	text-decoration: underline;
+	background-color: transparent;
 }
 @media all and (max-width: 767px) {
 	#twitter-widget {
