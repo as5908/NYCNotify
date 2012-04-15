@@ -1,37 +1,77 @@
-<tr>
-	<td width="60%" align="center">Content to be added here...</td>
-	<td align="right">
-<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 30000,
-  width: 250,
-  height: 300,
-  theme: {
-    shell: {
-      background: '#333333',
-      color: '#ffffff'
-    },
-    tweets: {
-      background: '#000000',
-      color: '#ffffff',
-      links: '#4aed05'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    behavior: 'all'
-  }
-}).render().setUser('NotifyNYC').start();
-</script></td></tr>
-<table border="0" width="100%">
-	<tr>
-		<td align="center"><%= link_to "REGISTER", "/register" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "DEREGISTER", "/deregister" %></td>
-		<td align="center"></td>
-	</tr>
-</table>
+<div class="row">
+	<div class="span9">
+		<div class="hero-unit">
+			<h1>NotifyNYC Amplifier</h1>
+			<p class="pull-right hidden-phone hidden-tablet"><img src="/images/exclamation-mark.gif" alt=" "/></p>
+			<p>NotifyNYC Amplifier creates a digital echo chamber on Twitter for 
+					major emergency notifications in New York City. Twitter users can 
+					authorize the tool to share (retweet) the notifications with their 
+					followers automatically by linking their accounts to NotifyNYC 
+					Amplifier. By retweeting, the message and its source (@NotifyNYC) are preserved.</p>
+			<p><a class="btn btn-large btn-primary" href="/register"><i class="icon-plus-sign icon-white"></i> Install NotifyNYC Amplifier on Twitter</a></p>
+			<div>NotifyNYC Amplifyier instantly rapidly retweets NotifyNYC messages that require 
+			immediate action from the public, things like tornado warnings that ask residents 
+			to shelter-in-place or hurricane warnings that announce evacuations of coastal areas.</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="hidden-phone">
+			<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+			<script>
+			new TWTR.Widget({
+			  version: 2,
+			  type: 'profile',
+			  rpp: 3,
+			  interval: 30000,
+			  width: 'auto',
+			  height: 300,
+			  theme: {
+				 shell: {
+				      background: '#cb0000',
+				      color: '#ffffff'
+				    },
+				    tweets: {
+				      background: '#dc0000',
+				      color: '#ffffff',
+				      links: '#dddddd'
+				    }
+			  },
+			  features: {
+			    scrollbar: false,
+			    loop: false,
+			    live: false,
+			    behavior: 'all'
+			  }
+			}).render().setUser('NotifyNYC').start();
+			</script>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span6">
+		<h2>NotifyNYC Amplifier Will</h2>
+		<p>NotifyNYC Amplifyier will only post to your account during major emergency 
+			notifications that require the city to spread the word quickly. <a href="#"> 
+			View the full list of the types of emergency notifications that will be amplified.</a></p>
+		<p>Finalized list of keyword triggers</p>
+		<p>Explanation of &ldquo;#!&rdquo; for unprecedented notifications</p>
+	</div>
+	<div class="span6">
+		<h2>NotifyNYC Amplifier Will Not</h2>
+		<p>Although we may change our keyword triggers from time to time, NotifyNYC Amplifyier will NOT:</p>
+		<ul>
+			<li>Update your profile.</li>
+			<li>Send messages which appear to be directly from you.</li>
+			<li>Read your timeline</li>
+			<li>Add followers to your account</li>
+		</ul>
+		<p>You can <a href="/deregister">deactivate NotifyNYC Amplifyier at anytime</a> through the apps page on your 
+			twitter account (screenshot), or by returning to this site.</p>
+	</div>
+</div>
+
+<div>
+	<span><%= link_to "REGISTER", "/register" %></span> 
+	<span><%= link_to "DEREGISTER", "/deregister" %></span>
+</div>

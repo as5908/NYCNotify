@@ -1,78 +1,37 @@
-.container {
-  width: 1000px;
+
+#nyc-gov-header {
+	background-color: #555;
 }
-
-body {
-  background: #FFFFCC;
+#notify-header {
+	border-top: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	background-color: #fe0000;
 }
-
-header {
-  padding-top: 20px;
+#notify-header .navbar-inner {
+	background-color: #fe0000;
+	background-image: none;
 }
-
-header img {
-  //padding: 1em;
-  //background: #fff;
+.hero-unit h1 {
+	font-size: 45px;
 }
-
-section {
-  margin-top: 1em;
-  font-size: 120%;
-  padding: 20px;
-  //background: #fff;
+.hero-unit .pull-right {
+	margin-left: 10px;
+	margin-bottom: 0;
 }
-
-section h1 {
-  font-size: 200%;
-}
-
-/* Links */
-
-a {
-  color: #09c;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #069;
-  text-decoration: underline;
-}
-
-a:visited {
-  color: #069;
-}
-
 /* Navigation */
-
-nav {
-  float: right;
-  //background: #fff;
-  padding: 0 0.7em;
-  white-space: nowrap;
+#notify-header.navbar .nav {
+	float: right;
+	right: 10px;
 }
-
-nav ul {
-  margin: 0;
-  padding: 0;
+#notify-header.navbar .nav > li > a {
+	text-transform: uppercase;
+	color: #fff;
+	font-weight: normal;
 }
-
-nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
-}
-
-nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
-}
-
-nav ul li a:visited {
-  color: #09c;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
+#notify-header.navbar .nav > li > a:hover {
+	text-transform: uppercase;
+	text-decoration: underline;
+	background-color: transparent;
 }
 
 /* Sign up button */
@@ -100,16 +59,21 @@ a.signup_button {
 
 /* Footer */
 
-footer {
-  text-align: center;
-  margin-top: 10px;
-  width: 710px;
-  margin-left: auto;
-  margin-right: auto;
+#nyc-gov-footer {
+	background-color:#494B4C; 
+	padding-left:13px; 
+	padding-right:25px;
+}
+.footer_copyright {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #C4C4B2;
 }
 
-footer nav {
-  float: none;
+.footer_links {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #F9D053;
 }
 
 /* User show page */
@@ -275,3 +239,5 @@ table.altrowstable td {
 .evenrowcolor{
 	background-color:#c3dde0;
 }
+
+
