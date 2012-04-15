@@ -14,8 +14,8 @@
 .hero-unit h1 {
 	font-size: 45px;
 }
-.hero-unit .pull-right {
-	margin-left: 10px;
+.hero-unit .pull-left {
+	margin-right: 10px;
 }
 /* Navigation */
 #notify-header.navbar .nav {
