@@ -32,11 +32,7 @@
 	text-decoration: underline;
 	background-color: transparent;
 }
-@media all and (max-width: 767px) {
-	#twitter-widget {
-		display: none;
-	}
-}
+
 /* Sign up button */
 
 a.signup_button {
